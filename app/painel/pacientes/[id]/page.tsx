@@ -5,7 +5,7 @@ import { mockPatients } from "@/lib/data/mock-patients";
 import { programLevels } from "@/lib/data/program-levels";
 
 export default async function PatientDetailPage(
-  props: PageProps<"/pacientes/[id]">,
+  props: PageProps<"/painel/pacientes/[id]">,
 ) {
   const { id } = await props.params;
   const patient = mockPatients.find((p) => p.id === id);

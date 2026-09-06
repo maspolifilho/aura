@@ -6,6 +6,11 @@ import { generateScheduleForPatient } from "@/lib/business/exam-schedule";
 import type { ProgramLevelCode } from "@/lib/data/program-levels";
 import type { ScheduledExam } from "@/lib/types/domain";
 
+export interface MockScheduledExam extends ScheduledExam {
+  performedDate?: Date;
+  recordingUrl?: string;
+}
+
 export interface MockPatient {
   id: string;
   fullName: string;
@@ -14,7 +19,7 @@ export interface MockPatient {
   obstetricianName: string | null;
   registrationDate: Date;
   dueDate: Date;
-  schedule: ScheduledExam[];
+  schedule: MockScheduledExam[];
 }
 
 function makePatient(
@@ -38,16 +43,25 @@ function makePatient(
   };
 }
 
+const camila = makePatient(
+  "1",
+  "Camila Souza Andrade",
+  "123.456.789-00",
+  "advanced",
+  "Dr. Ricardo Nunes",
+  new Date(2026, 7, 1),
+  new Date(2027, 2, 15),
+);
+// Demo: morfológico do 1º trimestre já realizado, com gravação disponível.
+camila.schedule[0] = {
+  ...camila.schedule[0],
+  status: "realizado",
+  performedDate: new Date(2026, 8, 2),
+  recordingUrl: "https://gravacoes.exemplo.com/camila/morfologico-1t",
+};
+
 export const mockPatients: MockPatient[] = [
-  makePatient(
-    "1",
-    "Camila Souza Andrade",
-    "123.456.789-00",
-    "advanced",
-    "Dr. Ricardo Nunes",
-    new Date(2026, 7, 1),
-    new Date(2027, 2, 15),
-  ),
+  camila,
   makePatient(
     "2",
     "Fernanda Lima Costa",

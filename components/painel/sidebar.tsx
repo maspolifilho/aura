@@ -14,12 +14,12 @@ import { AuraMark } from "@/components/marketing/aura-mark";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/pacientes", label: "Pacientes", icon: Users },
-  { href: "/obstetras", label: "Obstetras", icon: Stethoscope },
-  { href: "/leads", label: "Leads", icon: Handshake },
-  { href: "/financeiro", label: "Financeiro", icon: Wallet },
-  { href: "/indicadores", label: "Indicadores", icon: BarChart3 },
+  { href: "/painel/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/painel/pacientes", label: "Pacientes", icon: Users },
+  { href: "/painel/obstetras", label: "Obstetras", icon: Stethoscope },
+  { href: "/painel/leads", label: "Leads", icon: Handshake },
+  { href: "/painel/financeiro", label: "Financeiro", icon: Wallet },
+  { href: "/painel/indicadores", label: "Indicadores", icon: BarChart3 },
 ];
 
 export function PainelSidebar() {

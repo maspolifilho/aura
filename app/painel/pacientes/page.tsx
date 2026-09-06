@@ -23,7 +23,7 @@ export default function PacientesPage() {
           </p>
         </div>
         <Button asChild>
-          <Link href="/pacientes/novo">Nova paciente</Link>
+          <Link href="/painel/pacientes/novo">Nova paciente</Link>
         </Button>
       </div>
 
@@ -51,7 +51,7 @@ export default function PacientesPage() {
                 <TableRow key={patient.id}>
                   <TableCell>
                     <Link
-                      href={`/pacientes/${patient.id}`}
+                      href={`/painel/pacientes/${patient.id}`}
                       className="font-medium text-foreground hover:underline"
                     >
                       {patient.fullName}
