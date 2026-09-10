@@ -9,6 +9,7 @@ import {
   Handshake,
   Wallet,
   BarChart3,
+  Calculator,
 } from "lucide-react";
 import { AuraMark } from "@/components/marketing/aura-mark";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,7 @@ const links = [
   { href: "/painel/leads", label: "Leads", icon: Handshake },
   { href: "/painel/financeiro", label: "Financeiro", icon: Wallet },
   { href: "/painel/indicadores", label: "Indicadores", icon: BarChart3 },
+  { href: "/painel/calculadoras", label: "Calculadoras", icon: Calculator },
 ];
 
 export function PainelSidebar() {

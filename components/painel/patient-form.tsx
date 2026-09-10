@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScheduleTable } from "@/components/painel/schedule-table";
+import { GestationalAgeCalculator } from "@/components/calculators/gestational-age-calculator";
 import {
   estimatedPregnancyStart,
   generateScheduleForPatient,
@@ -41,6 +42,7 @@ export function PatientForm() {
   );
   const [gaWeeks, setGaWeeks] = useState("");
   const [gaDays, setGaDays] = useState("0");
+  const [showGaCalculator, setShowGaCalculator] = useState(false);
 
   const dueDate = parseDateInput(dueDateInput);
   const registrationDate = parseDateInput(registrationDateInput);
@@ -105,7 +107,16 @@ export function PatientForm() {
             </Select>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="dueDate">DPP (data provável do parto)</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="dueDate">DPP (data provável do parto)</Label>
+              <button
+                type="button"
+                onClick={() => setShowGaCalculator((v) => !v)}
+                className="text-xs text-primary hover:underline"
+              >
+                {showGaCalculator ? "Fechar calculadora" : "Calcular pela DUM/CCN"}
+              </button>
+            </div>
             <Input
               id="dueDate"
               type="date"
@@ -150,6 +161,22 @@ export function PatientForm() {
           </div>
         </CardContent>
       </Card>
+
+      {showGaCalculator && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Calcular DPP</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <GestationalAgeCalculator
+              onApplyDueDate={(date) => {
+                setDueDateInput(toDateInputValue(date));
+                setShowGaCalculator(false);
+              }}
+            />
+          </CardContent>
+        </Card>
+      )}
 
       {gaMismatchDays !== null && Math.abs(gaMismatchDays) > 7 && (
         <div className="flex items-start gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">

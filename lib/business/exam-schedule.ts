@@ -1,4 +1,5 @@
 import { examTypes, programExamsByLevel } from "@/lib/data/exam-types";
+import { addDays } from "@/lib/business/date-utils";
 import type {
   ExamTypeDefinition,
   GestationalAge,
@@ -9,12 +10,6 @@ import type {
 const DAYS_PER_WEEK = 7;
 /** Convenção obstétrica: DPP = início da gestação + 40 semanas. */
 const GESTATION_LENGTH_DAYS = 40 * DAYS_PER_WEEK;
-
-function addDays(date: Date, days: number): Date {
-  const result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
-}
 
 function gestationalAgeToDays(ga: GestationalAge): number {
   return ga.weeks * DAYS_PER_WEEK + ga.days;
